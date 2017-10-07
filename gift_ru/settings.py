@@ -94,12 +94,12 @@ WSGI_APPLICATION = 'gift_ru.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dem4ak',
-        'USER': 'dem4ak',
-        'PASSWORD': 'Dem4ak123',
-        'HOST': '194.58.108.61',
-        'PORT': '3306',
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'dem4ak',
+            'USER': 'dem4ak',
+            'PASSWORD': 'Dem4ak123',
+            'HOST': '194.58.108.61',
+            'PORT': '3306',
     }
 }
 
