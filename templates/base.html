@@ -1,0 +1,95 @@
+{% load static staticfiles%}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{{ object.get_title }}{% endblock %}</title>
+    <meta name="title" content="{% block meta-title %}{% if object.meta_title %}{{ object.meta_title }}{% else %}{% endif %}{% endblock %}"/>
+    <meta name="keywords" content="{% block meta-keywords %}{{ object.meta_keywords }}{% endblock %}"/>
+    <meta name="description" content="{% block meta-description %}{% if object.meta_description %}{{ object.meta_description }}{% else %}{% endif %}{% endblock %}"/>
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% block style %}
+
+    {% endblock style %}
+</head>
+<body>
+<div class="wrapper">
+    <header>
+        <div class="wrapper_nav_menu">
+            <div class="logo">
+                <a href="/"><img src="{% static 'img/logo.png' %}" alt=""></a>
+            </div>
+            <div class="nav_menu">
+                <ul>
+                {% for one_menu in menu %}
+                    <li><a href="/page/{{ one_menu.slug }}">{{ one_menu.title }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="header_info_contact">
+                <span class="phone_header"><a href="tel:+74956486895">+7 495 648-68-95</a></span>
+                <span class="email_header"><a href="mailto:hochu@giftbe.ru">hochu@giftbe.ru</a></span>
+            </div>
+        </div>
+        <div class="bottom_header">
+            <div class="category_menu">
+                <a href="#"><span>К</span>аталог сувениров</a>
+            </div>
+            <div class="nav_search">
+                <div class="search">
+                    <form action="">
+                        <input type="search" placeholder="быстропоиск">
+                        <input type="submit" id="searchsubmit" value="">
+                        <a href="#" class="more_search">+</a>
+                    </form>
+                </div>
+            </div>
+            <div class="bottom_header_info">
+                <div class="order_and_map">
+                    <span class="order">Мин заказ: <span>30 000 руб.</span> | </span>
+                    <a href="#">Обратный звонок</a>
+                </div>
+                <div class="address">
+                    Красностуденческий проезд, дом 7, офис 8 |
+                    <a href="/contacts/#map">На карте</a>
+                </div>
+                <div class="time_work">Работаем: 10:00—19:00. ПН.—ПТ.</div>
+
+            </div>
+        </div>
+    </header>
+    <div class="content_wrapper">
+        {% block page %}
+
+        {% endblock page %}
+    </div>
+    <footer>
+        <div class="social">
+            <a target="_blank" href="http://www.facebook.com/GiftBe.ru" rel="nofollow">
+                <img class="facebook" src="{% static 'img/facebook.png' %}" alt="">
+            </a>
+            <a target="_blank" href="http://www.vk.com/gyngy" rel="nofollow">
+                <img src="{% static 'img/vkontakte.png' %}" alt="">
+            </a>
+            <a target="_blank" href="https://twitter.com/giftberu" rel="nofollow">
+                <img class="twitter" src="{% static 'img/twitter.png' %}" alt="">
+            </a>
+            <a target="_blank" href="http://www.instagram.com/giftbe.ru" rel="nofollow">
+                <img class="instagram" src="{% static 'img/instagram.png' %}" alt="">
+            </a>
+        </div>
+        <div class="copyright">
+            <span>GiftBe.ru — сувенирная продукция с логотипом компании. Москва.</span><br>
+            <a href="/sitemap/">КАРТА САЙТА</a>. ООО «ДЖИНЖЕР ЭДЖЕНСИ», 2012–2017
+        </div>
+    </footer>
+</div>
+    {% block script %}
+
+    {% endblock script %}
+</body>
+</html>

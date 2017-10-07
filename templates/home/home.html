@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+{% endblock style %}
+{% block page %}
+    <div class="home_slider">
+        <div id="owl-home_slider" class="owl-carousel owl-theme">
+            {% for slide in slider %}
+            <div class="home_slider"><img src="{{ slide.image }}" alt="{{ slide.alt }}"></div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div>
+    {% for one_category in category %}
+        <div class="one_category">
+            <a href="{{ one_category.slug }}">
+                <img src="{{ one_category.category_image }}" alt="{{ one_category.name }}">
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+
+    <div>
+    {% for step in steps %}
+        <div class="one_step">
+            <div class="header_step"><span>{{ step.sort }}.</span>{{ step.title }}</div>
+            <div class="content_step">{{ step.content }}</div>
+        </div>
+    {% endfor %}
+    </div>
+
+    <div class="new_products">
+        {% for new_product in new_products %}
+            <div class="one_product">
+                <div class="image_product">
+                    <a href="{{ new_product.product.category.slug }}/{{ new_product.product.slug }}"><img src="{{ new_product.image }}" alt="{{ new_product.product.name }}"></a>
+                </div>
+                <div class="description_product">
+                    <a href="{{ new_product.product.category.slug }}/{{ new_product.product.slug }}"><div class="header_product">{{ new_product.product.name }}</div></a>
+                    <div class="vendor_code">{{ new_product.product.vendor_code }}</div>
+                    <div class="color"><br></div>
+                    <div class="info_price">
+                        <span class="price">{{ new_product.product.price }}</span>
+                        <span><a href="#">Купить</a></span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="seo_text">
+        <div class="header_seo_text">{{ seo_text.title }}</div>
+        <div class="content_seo_text">{{ seo_text.seo_text }}</div>
+    </div>
+
+    <div class="news">
+        <div class="header_news">Новости</div>
+        <div class="content_news">
+            {% for one_news in news %}
+                <div class="one_news">
+                    <div class="one_news_title">{{ one_news.title }}</div>
+                    <div class="one_news_content">{{ one_news.content }}</div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="works">
+        <div class="small_works">
+            <div class="header_small_works">Наши работы</div>
+            <div class="content_small_works">
+                {% for work in small_works %}
+                    <div class="one_small_work">
+                        <img src="{{ work.image }}" alt="{{ work.work.title }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="big_works">
+            <div class="header_big_works">Вдохновение _ Смелые решения</div>
+            <div class="content_big_works">
+                {% for work in big_works %}
+                    <div class="one_big_works">
+                        <img src="{{ work.image }}" alt="{{ work.work.title }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock page %}
+{% block script %}
+    <script src="{% static 'js/jquery-1-12-4.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+          $("#owl-home_slider").owlCarousel({
+              navigation : false, // Show next and prev buttons
+              slideSpeed : 300,
+              paginationSpeed : 400,
+              singleItem:true,
+              autoPlay: true
+          });
+        });
+    </script>
+{% endblock script %}

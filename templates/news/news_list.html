@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block page %}
+<h1>Все новости</h1>
+{% for one_news in all_news %}
+    <div>
+        <div><a href="/news/{{ one_news.slug }}">{{ one_news.title }}</a></div>
+        <div>{{ one_news.changed }}</div>
+        <div>{{ one_news.content }}</div>
+        <br>
+    </div>
+{% endfor %}
+
+{% endblock page %}
