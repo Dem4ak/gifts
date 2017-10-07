@@ -32,7 +32,7 @@ SECRET_KEY = 'p0iuh5poefqt(+(t6c^5)2wp@41!yu-s4$rnm(da&_w82uw31='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dem4ak.info', 'www.dem4ak.info']
 
 
 # Application definition
