@@ -1096,15 +1096,20 @@ model</ColNames>
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="261" parent="42" name="works_worksimage_work_id_dfdf22ff_fk_works_works_id">
+    <column id="261" parent="42" name="is_big">
+      <Position>8</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="262" parent="42" name="works_worksimage_work_id_dfdf22ff_fk_works_works_id">
       <ColNames>work_id</ColNames>
     </index>
-    <key id="262" parent="42" name="PRIMARY">
+    <key id="263" parent="42" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="263" parent="42" name="works_worksimage_work_id_dfdf22ff_fk_works_works_id">
+    <foreign-key id="264" parent="42" name="works_worksimage_work_id_dfdf22ff_fk_works_works_id">
       <ColNames>work_id</ColNames>
       <RefSchemaName>gifts</RefSchemaName>
       <RefTableName>works_works</RefTableName>

@@ -1,0 +1,41 @@
+{% load static staticfiles siteblocks_tags %}
+<header>
+    <div class="wrapper_nav_menu">
+        <div class="logo">
+            <a href="/"><img src="{% static 'img/logo.png' %}" alt=""></a>
+        </div>
+        <div class="nav_menu">
+            {% menu request.path %}
+        </div>
+        <div class="header_info_contact">
+            <span class="phone_header"><a href="tel:+74956486895">+7 495 648-68-95</a></span>
+            <span class="email_header"><a href="mailto:hochu@giftbe.ru">hochu@giftbe.ru</a></span>
+        </div>
+    </div>
+    <div class="bottom_header">
+        <div class="category_menu">
+            <a href="#"><span>К</span>аталог сувениров</a>
+        </div>
+        <div class="nav_search">
+            <div class="search">
+                <form action="">
+                    <input type="search" placeholder="быстропоиск">
+                    <input type="submit" id="searchsubmit" value="">
+                    <a href="#" class="more_search">+</a>
+                </form>
+            </div>
+        </div>
+        <div class="bottom_header_info">
+            <div class="order_and_map">
+                <span class="order">Мин заказ: <span>30 000 руб.</span> | </span>
+                <a href="#">Обратный звонок</a>
+            </div>
+            <div class="address">
+                Красностуденческий проезд, дом 7, офис 8 |
+                <a href="/contacts/#map">На карте</a>
+            </div>
+            <div class="time_work">Работаем: 10:00—19:00. ПН.—ПТ.</div>
+
+        </div>
+    </div>
+</header>

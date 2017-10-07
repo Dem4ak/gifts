@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'products',
     'mptt',
     'works',
-    'gift_ru'
+    'gift_ru',
+    'siteblocks'
 ]
 
 MIDDLEWARE = [
@@ -77,6 +78,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
+            'libraries':{
+                'siteblocks_tags': 'siteblocks.templatetags.siteblocks_tags',
+            }
         },
     },
 ]
@@ -90,9 +95,11 @@ WSGI_APPLICATION = 'gift_ru.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gifts',
-        'USER': 'root',
-        'PASSWORD': 'Dem4ak123'
+        'NAME': 'dem4ak',
+        'USER': 'dem4ak',
+        'PASSWORD': 'Dem4ak123',
+        'HOST': '194.58.108.61',
+        'PORT': '3306',
     }
 }
 

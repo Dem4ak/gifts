@@ -1,5 +1,4 @@
 from news.models import News
-from pages.models import Page
 from gift_ru.models import *
 from products.models import ProductCategory, ProductImage
 from django.shortcuts import render
@@ -7,7 +6,6 @@ from works.models import WorksImage
 
 
 def home(request):
-    menu = Page.objects.filter(show_in_header=True)
     slider = SliderImage.objects.all()
     category = ProductCategory.objects.filter(parent_id=25)
     steps = StepBy.objects.all().order_by('sort')
