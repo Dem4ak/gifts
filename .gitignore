@@ -12,6 +12,7 @@ __pycache__
 MANIFEST
 .idea/
 workspace.xml
+.idea/workspace.xml
 dist/
 docs/_build/
 docs/locale/
