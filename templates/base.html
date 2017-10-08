@@ -6,10 +6,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}{{ object.get_title }}{% endblock %}</title>
-    <meta name="title" content="{% block meta-title %}{% if object.meta_title %}{{ object.meta_title }}{% else %}{% endif %}{% endblock %}"/>
-    <meta name="keywords" content="{% block meta-keywords %}{{ object.meta_keywords }}{% endblock %}"/>
-    <meta name="description" content="{% block meta-description %}{% if object.meta_description %}{{ object.meta_description }}{% else %}{% endif %}{% endblock %}"/>
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name="title" content="{% block meta-title %}{% endblock meta-title %}"/>
+    <meta name="keywords" content="{% block meta-keywords %}{% endblock meta-keywords %}"/>
+    <meta name="description" content="{% block meta-description %}{% endblock meta-description %}"/>
     <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     {% block style %}
