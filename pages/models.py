@@ -9,12 +9,9 @@ class Page(models.Model):
 
     content = RichTextField(verbose_name=u'Содержимое страницы', blank=True)
 
-
     order = models.IntegerField(verbose_name=u'Порядок сортировки', default=10)
     template = models.CharField(verbose_name=u'шаблон', max_length=100, default=u'default.html')
     visible = models.BooleanField(u'отображать', default=True)
-    show_in_header = models.BooleanField(u'отображать в шапке', default=False)
-    show_upper_search = models.BooleanField(u'отображать над поиском', default=False)
 
     # сео мета теги
     meta_title = models.CharField(u'заголовок', max_length=150, blank=True)
