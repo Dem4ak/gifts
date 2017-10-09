@@ -1,7 +1,36 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block title %}{{ category.meta_title }}{% endblock title %}
+{% block meta-keywords %}{{ category.meta_keywords }}{% endblock meta-keywords %}
+{% block meta-description %}{{ category.meta_description }}{% endblock meta-description %}
+{% block meta-title %}{{ category.meta_title }}{% endblock meta-title %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+{% endblock style %}
 {% block page %}
-	<h1>Категории Товаров</h1>
-
-    {{ category.name }}
+    <div class="header_category"><h1>{{ category.name }}</h1></div>
+    {% if subcategory  %}
+        <div class="subcategory">
+            {% for subcat in subcategory %}
+                <a href="{{ subcat.slug }}">{{ subcat.name }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if category.seo_text_top %}
+        <div class="top_category_text">{{ category.seo_text_top|safe }}</div>
+    {% endif %}
+    <div class="category_filters">Тут фильтры пока пустые</div>
+    <div class="products">
+{{ products }}
+        {% for product in products %}
+            {{ product }}
+        {% endfor %}
+        ---
+        <div class="product">
+            <div class="img_product">
+                <a href="#"><img src="" alt=""></a>
+            </div>
+            <div class="info_product"></div>
+        </div>
+    </div>
 {% endblock page %}

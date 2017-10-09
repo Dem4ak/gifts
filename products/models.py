@@ -4,6 +4,7 @@ import os
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from pytils.translit import translify, slugify
+from ckeditor.fields import RichTextField
 
 
 def FilePathPhotos(instance, filename):
@@ -23,6 +24,9 @@ class ProductCategory(MPTTModel):
     meta_description = models.TextField(u'описание', blank=True)
 
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
+    seo_text_top = RichTextField(verbose_name=u'Текст сверху страницы', blank=True)
+    seo_text_bottom_left = RichTextField(verbose_name=u'Текст внизу слева', blank=True)
+    seo_text_bottom_right = RichTextField(verbose_name=u'Текст внизу справа', blank=True)
     is_active = models.BooleanField(default=True)
 
     created = models.DateTimeField(u'дата создания', auto_now_add=True, blank=True, null=True, editable=False)
@@ -52,8 +56,9 @@ class Product(models.Model):
     name = models.CharField(max_length=64, blank=True, null=True, default=None)
     slug = models.SlugField(max_length=250, verbose_name=u'Адрес', unique=True,
                             help_text=u'Адрес категории на латинице. Например, "your_address"')
-    category = models.ForeignKey(ProductCategory, default=25, verbose_name=u'категория', blank=True, null=True)
-    vendor_code = models.CharField(max_length=250, blank=True, null=False, default=None, verbose_name=u'Артикул', unique=True)
+    categories = models.ManyToManyField(ProductCategory, verbose_name=u'Категории', blank=True)
+    vendor_code = models.CharField(max_length=250,
+                                   blank=True, null=False, default=None, verbose_name=u'Артикул', unique=True)
     price = models.FloatField(blank=True, null=False, default=0.00, verbose_name=u'Цена')
     old_price = models.FloatField(blank=True, null=False, default=0.00, verbose_name=u'Старая цена')
     discount_price = models.FloatField(blank=True, null=False, default=0.00, verbose_name=u'Скидочная цена')
