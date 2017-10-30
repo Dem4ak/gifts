@@ -7,7 +7,7 @@ from works.models import WorksImage
 
 def home(request):
     slider = SliderImage.objects.all()
-    category = ProductCategory.objects.filter(parent_id=25)
+    category = ProductCategory.objects.exclude(id=1)
     steps = StepBy.objects.all().order_by('sort')
     new_products = Product.objects.filter(is_active=True)[0:6]
     seo_text = Home.objects.get(id=1)

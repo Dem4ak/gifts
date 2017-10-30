@@ -29,11 +29,11 @@ class ProductCategoryAdmin(DraggableMPTTAdmin):
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 
 
-class ProductAdmin(RelatedFieldAdmin):
-    list_display = ("name", "slug", "vendor_code", 'category', "price", "is_active", "changed")
-    list_display_links = ('name', 'slug',)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ("name", "full_name", "slug", "vendor_code", 'categories', "price", "is_active", "changed")
+    list_display_links = ('name', "full_name", 'slug',)
     list_filter = []
-    list_editable = ('is_active', 'category',)
+    list_editable = ('categories', 'is_active',)
     search_fields = ('name', 'price', 'vendor_code',)
 
     prepopulated_fields = {'slug': ('name',)}
@@ -48,31 +48,31 @@ class ProductAdmin(RelatedFieldAdmin):
 admin.site.register(Product, ProductAdmin)
 
 
-class ProductImageAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in ProductImage._meta.fields]
-
-    class Meta:
-        model = ProductImage
-
-
-admin.site.register(ProductImage, ProductImageAdmin)
-
-
-class ProductColorAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in ProductColor._meta.fields]
-
-    class Meta:
-        model = ProductColor
-
-
-admin.site.register(ProductColor, ProductColorAdmin)
-
-
-class ProductAttributeAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in ProductAttribute._meta.fields]
-
-    class Meta:
-        model = ProductAttribute
-
-
-admin.site.register(ProductAttribute, ProductAttributeAdmin)
+# class ProductImageAdmin(admin.ModelAdmin):
+#     list_display = [field.name for field in ProductImage._meta.fields]
+#
+#     class Meta:
+#         model = ProductImage
+#
+#
+# admin.site.register(ProductImage, ProductImageAdmin)
+#
+#
+# class ProductColorAdmin(admin.ModelAdmin):
+#     list_display = [field.name for field in ProductColor._meta.fields]
+#
+#     class Meta:
+#         model = ProductColor
+#
+#
+# admin.site.register(ProductColor, ProductColorAdmin)
+#
+#
+# class ProductAttributeAdmin(admin.ModelAdmin):
+#     list_display = [field.name for field in ProductAttribute._meta.fields]
+#
+#     class Meta:
+#         model = ProductAttribute
+#
+#
+# admin.site.register(ProductAttribute, ProductAttributeAdmin)
