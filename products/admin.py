@@ -9,6 +9,16 @@ class ProductImageInline(admin.TabularInline):
     extra = 0
 
 
+class ProductColorInline(admin.TabularInline):
+    model = ProductColor
+    extra = 0
+
+
+class ProductAttributeInline(admin.TabularInline):
+    model = ProductAttribute
+    extra = 0
+
+
 class ProductCategoryAdmin(DraggableMPTTAdmin):
     list_display = ('tree_actions', 'indented_title', 'slug', 'is_active', 'created', 'changed')  # Sane defaults.
 
@@ -19,17 +29,17 @@ class ProductCategoryAdmin(DraggableMPTTAdmin):
 admin.site.register(ProductCategory, ProductCategoryAdmin)
 
 
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "slug", "vendor_code", "price", "is_active", "changed")
+class ProductAdmin(RelatedFieldAdmin):
+    list_display = ("name", "slug", "vendor_code", 'category', "price", "is_active", "changed")
     list_display_links = ('name', 'slug',)
     list_filter = []
-    list_editable = ('is_active',)
-    search_fields = ('name', 'price', 'category', 'vendor_code',)
+    list_editable = ('is_active', 'category',)
+    search_fields = ('name', 'price', 'vendor_code',)
 
     prepopulated_fields = {'slug': ('name',)}
     list_select_related = True
     # list_display = [field.name for field in Product._meta.fields]
-    inlines = [ProductImageInline]
+    inlines = [ProductImageInline, ProductColorInline, ProductAttributeInline]
 
     class Meta:
         model = Product
@@ -46,3 +56,23 @@ class ProductImageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ProductImage, ProductImageAdmin)
+
+
+class ProductColorAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in ProductColor._meta.fields]
+
+    class Meta:
+        model = ProductColor
+
+
+admin.site.register(ProductColor, ProductColorAdmin)
+
+
+class ProductAttributeAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in ProductAttribute._meta.fields]
+
+    class Meta:
+        model = ProductAttribute
+
+
+admin.site.register(ProductAttribute, ProductAttributeAdmin)

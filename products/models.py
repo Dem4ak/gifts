@@ -54,19 +54,19 @@ class ProductCategory(MPTTModel):
 
 class Product(models.Model):
     name = models.CharField(max_length=64, blank=True, null=True, default=None)
+    full_name = models.CharField(max_length=258, blank=True, null=True, default=None)
     slug = models.SlugField(max_length=250, verbose_name=u'Адрес', unique=True,
                             help_text=u'Адрес категории на латинице. Например, "your_address"')
-    categories = models.ManyToManyField(ProductCategory, verbose_name=u'Категории', blank=True)
+    description = models.TextField(verbose_name=u'Описание', null=True, default=None)
+    categories = models.ForeignKey(ProductCategory, verbose_name=u'Категории', blank=True)
     vendor_code = models.CharField(max_length=250,
                                    blank=True, null=False, default=None, verbose_name=u'Артикул', unique=True)
     price = models.FloatField(blank=True, null=False, default=0.00, verbose_name=u'Цена')
-    old_price = models.FloatField(blank=True, null=False, default=0.00, verbose_name=u'Старая цена')
     discount_price = models.FloatField(blank=True, null=False, default=0.00, verbose_name=u'Скидочная цена')
     brand = models.CharField(max_length=128, blank=True, null=True, verbose_name=u'Бренд')
-    weight = models.CharField(max_length=256, blank=True, null=True, verbose_name=u'Вес')
+    branding = models.CharField(max_length=128, blank=True, null=True, verbose_name=u'Брендинг')
     size = models.CharField(max_length=256, blank=True, null=True, verbose_name=u'Размер')
     material = models.CharField(max_length=256, blank=True, null=True, verbose_name=u'Материал')
-    density = models.CharField(max_length=256, blank=True, null=True, verbose_name=u'Плотность')
     source = models.CharField(max_length=128, blank=True, null=True, verbose_name=u'Имя магазина товара')
 
     meta_title = models.CharField(u'заголовок', max_length=150, blank=True)
@@ -102,3 +102,29 @@ class ProductImage(models.Model):
     class Meta:
         verbose_name = 'Фотография'
         verbose_name_plural = 'Фотографии'
+
+
+class ProductColor(models.Model):
+    product = models.ForeignKey(Product, blank=True, null=True, default=None)
+    color = models.CharField(max_length=128, blank=True, null=True, verbose_name=u'Цвет')
+
+    def __str__(self):
+        return "%s" % self.id
+
+    class Meta:
+        verbose_name = 'Цвет товара'
+        verbose_name_plural = 'Цвета товаров'
+
+
+class ProductAttribute(models.Model):
+    product = models.ForeignKey(Product, blank=True, null=True, default=None)
+    name = models.CharField(max_length=64, blank=True, null=True, verbose_name=u'Имя атрибута')
+    value = models.CharField(max_length=64, blank=True, null=True, verbose_name=u'Значение атрибута')
+    dim = models.CharField(max_length=64, blank=True, null=True, verbose_name=u'Величина атрибута')
+
+    def __str__(self):
+        return "%s" % self.id
+
+    class Meta:
+        verbose_name = 'Атрибут товара'
+        verbose_name_plural = 'Атрибуты товаров'

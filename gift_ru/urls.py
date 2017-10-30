@@ -21,8 +21,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^page/', include('pages.urls')),
     url(r'^news/', include('news.urls')),
+    url(r'^works', include('works.urls')),
     url(r'^', include('products.urls')),
-    url(r'^', include('works.urls')),
     url(r'^$', views.home),
 
 ]
