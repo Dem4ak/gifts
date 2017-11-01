@@ -20,12 +20,12 @@
     {% for one_category in category %}
         <div class="one_category">
             <div class="one_category_img">
-                <a href="{{ one_category.slug }}">
+                <a href="{{ one_category.get_absolute_url }}">
                     <img src="{{ one_category.category_image }}" alt="{{ one_category.name }}">
                 </a>
             </div>
             <div class="one_category_name">
-                <a href="{{ one_category.slug }}">
+                <a href="{{ one_category.get_absolute_url }}">
                     <span class="red">{{ one_category.name.0 }}</span>
                     <span class="remove_first">{{ one_category.name }}</span>
                 </a>

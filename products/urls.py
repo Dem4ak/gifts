@@ -17,6 +17,6 @@ from django.contrib import admin
 from products import views
 
 urlpatterns = [
-    url(r'^(?P<category_slug>[^/]+)/$', views.all_products),
-    url(r'^(?P<category_slug>[^/]+)/(?P<product_slug>[^/]+)/$', views.one_product),
+    url(r'^category/(?P<category_slug>[^/]+)/$', views.all_products),
+    url(r'^(?P<product_slug>[^/]+)/$', views.one_product),
 ]

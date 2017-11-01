@@ -12,7 +12,7 @@
     {% if subcategory  %}
         <div class="subcategory">
             {% for subcat in subcategory %}
-                <a href="{{ subcat.slug }}">{{ subcat.name }}</a>
+                <a href="{{ subcat.get_absolute_url }}">{{ subcat.name }}</a>
             {% endfor %}
         </div>
     {% endif %}

@@ -44,7 +44,7 @@ class ProductCategory(MPTTModel):
         return self.name
 
     def get_absolute_url(self):
-        return u'/%s/' % self.slug
+        return u'/category/%s/' % self.slug
 
     def get_title(self):
         if self.meta_title:

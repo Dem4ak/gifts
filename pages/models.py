@@ -8,9 +8,8 @@ class Page(models.Model):
                             help_text=u'Адрес страницы на латинице. Например, "your_address"')
 
     content = RichTextField(verbose_name=u'Содержимое страницы', blank=True)
-
-    order = models.IntegerField(verbose_name=u'Порядок сортировки', default=10)
-    template = models.CharField(verbose_name=u'шаблон', max_length=100, default=u'default.html')
+    parent = models.ForeignKey('self', verbose_name=u'Родительская страница', blank=True, null=True, )
+    order = models.IntegerField(verbose_name=u'Порядок сортировки', default=10, blank=True, null=True,)
     visible = models.BooleanField(u'отображать', default=True)
 
     # сео мета теги
@@ -28,6 +27,9 @@ class Page(models.Model):
     def __unicode__(self):
         return u'%s (%s)' % (self.title, self.get_absolute_url())
 
+    def __str__(self):
+        return self.title
+
     def get_absolute_url(self):
         return u'/page/%s/' % self.slug
 
@@ -36,4 +38,6 @@ class Page(models.Model):
         super(Page, self).save(**kwargs)
 
     def get_title(self):
-        return self.meta_title or self.title
+        if self.meta_title:
+            return self.meta_title
+        return self.title
