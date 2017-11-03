@@ -1,4 +1,18 @@
 {% extends "base.html" %}
 {% block page %}
+    <div class="header_page">
+        <h1>{{ page.title }}</h1>
+    </div>
+    {% if child_pages %}
+        <div class="child_pages">
+        {% for child_page in child_pages %}
+            <div class="child_page">
+                <a href="{{ child_page.get_absolute_url }}" class="one_child_page">
+                    {{ child_page.title }}
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
 	{{ page.content|safe  }}
 {% endblock page %}

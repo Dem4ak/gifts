@@ -281,3 +281,26 @@ footer .social img {
     float: left;
     margin-right: 30px;
 }
+
+
+.content_wrapper {
+    margin: 0 30px 0 35px;
+    line-height: 120%;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.content_wrapper p {
+    margin-bottom: 13px;
+}
+
+.child_pages {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.child_page {
+    margin-right: 20px;
+}

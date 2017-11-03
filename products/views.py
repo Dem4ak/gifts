@@ -1,12 +1,12 @@
 from django.shortcuts import render
 
-from products.models import Product, ProductCategory
+from products.models import Product, Category
 
 
 def all_products(request, category_slug):
-    category = ProductCategory.objects.get(slug=category_slug)
-    products = Product.objects.filter(categories=category.id)
-    subcategory = ProductCategory.objects.filter(parent=category.id)
+    category = Category.objects.get(slug=category_slug)
+    products = Product.objects.filter(category=category.id)
+    subcategory = Category.objects.filter(parent=category.id)
     return render(request, 'products/category.html', locals())
 
 

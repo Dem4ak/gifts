@@ -14,7 +14,7 @@ def FilePathPhotos(instance, filename):
     return os.path.join('static/uploads', 'product_images', new_name)
 
 
-class ProductCategory(MPTTModel):
+class Category(MPTTModel):
     name = models.CharField(max_length=64, blank=True, null=True, default=None)
     slug = models.SlugField(max_length=250, verbose_name=u'Адрес', unique=True,
                             help_text=u'Адрес категории на латинице. Например, "your_address"')
@@ -58,7 +58,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=250, verbose_name=u'Адрес', unique=True,
                             help_text=u'Адрес категории на латинице. Например, "your_address"')
     description = models.TextField(verbose_name=u'Описание', null=True, default=None)
-    categories = models.ForeignKey(ProductCategory, verbose_name=u'Категории', blank=True)
+    category = models.ForeignKey(Category, verbose_name=u'Главная категории', blank=True)
     vendor_code = models.CharField(max_length=250,
                                    blank=True, null=False, default=None, verbose_name=u'Артикул', unique=True)
     price = models.FloatField(blank=True, null=False, default=0.00, verbose_name=u'Цена')
@@ -128,3 +128,15 @@ class ProductAttribute(models.Model):
     class Meta:
         verbose_name = 'Атрибут товара'
         verbose_name_plural = 'Атрибуты товаров'
+
+
+class ProductToCategory(models.Model):
+    product = models.ForeignKey(Product, blank=True, null=True, default=None)
+    category = models.ForeignKey(Category, blank=True, null=True, default=None)
+
+    def __str__(self):
+        return "%s" % self.id
+
+    class Meta:
+        verbose_name = 'Категория товара'
+        verbose_name_plural = 'Категории товаров'
