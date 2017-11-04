@@ -1,6 +1,57 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ seo_text.meta_title }}{% endblock title %}
+{% block meta-keywords %}{{ seo_text.meta_keywords }}{% endblock meta-keywords %}
+{% block meta-description %}{{ seo_text.meta_description }}{% endblock meta-description %}
+{% block meta-title %}{{ seo_text.meta_title }}{% endblock meta-title %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock style %}
 {% block page %}
-	<h1>Один Товар</h1>
-    {{ product.name }}
+    <div class="wrapper_one_product">
+        {% if group_products_count > 1 %}
+        <div class="all_product_this_group">
+            {% for group_product in group_products %}
+                {% if group_product.slug == product.slug %}
+                <div class="one_product_this_group">
+                    <img src="{{ group_product.productimage_set.filter.0.image }}" alt="{{ group_product.full_name }}">
+                </div>
+                {% else %}
+                <div class="link_active one_product_this_group">
+                    <a href="/{{ group_product.slug }}">
+                        <img src="{{ group_product.productimage_set.filter.0.image }}" alt="{{ group_product.full_name }}">
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="content_one_product">
+            <div class="wrapper_info_product">
+                <div class="images_product">
+
+                </div>
+                <div class="info_product">
+                    <div class="full_name_product">{{ product.full_name }}</div>
+                    <div class="rating_product"></div>
+                    <div class="dop_info_product">
+                        <div class="vendor_code">Артикул: {{ product.vendor_code }}</div>
+                        <div class="availability">Есть в налчиии</div>
+                        <div class="count_lost">Остаток: 583 шт.</div>
+                    </div>
+                    <div class="price_count_buy">
+                        <div class="price">
+                            <span>Цена:</span>
+                            <span>{{ product.discount_price }}</span>
+                        </div>
+                        <div class="count"></div>
+                        <div class="buy">
+                            <button>Купить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock page %}

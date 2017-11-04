@@ -12,4 +12,6 @@ def all_products(request, category_slug):
 
 def one_product(request, product_slug):
     product = Product.objects.get(slug=product_slug)
+    group_products_count = Product.objects.filter(group_id=product.group_id).count()
+    group_products = Product.objects.filter(group_id=product.group_id)
     return render(request, 'products/product.html', locals())

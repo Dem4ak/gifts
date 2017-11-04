@@ -74,7 +74,7 @@ class Product(models.Model):
     meta_description = models.TextField(u'описание', blank=True)
 
     is_active = models.BooleanField(default=1)
-
+    group_id = models.CharField(max_length=128, blank=True, null=True, verbose_name=u'ID группы товаров')
     created = models.DateTimeField(u'дата создания', auto_now_add=True, blank=True, null=True, editable=False)
     changed = models.DateTimeField(u'дата изменения', auto_now=True, blank=True, null=True, editable=False)
 
