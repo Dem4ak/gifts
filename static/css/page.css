@@ -145,8 +145,7 @@ p {
 }
 
 .description {
-    /* border-right: 2px solid #b1b1b1; */ */
-    padding-right:;
+    /* border-right: 2px solid #b1b1b1; */
     padding-right: 35px;
 }
 
@@ -165,8 +164,7 @@ p {
 }
 
 .one_client:before {
-    border-right: 2px solid #b1b1b1; */
-    content: '';
+    border-right: 2px solid #b1b1b1;
     content: '';
     height: 90%;
     top: 0;

@@ -47,11 +47,11 @@
             {% for new_product in new_products %}
                 <div class="one_product">
                     <div class="image_product">
-                        <a href="{{ new_product.category.slug }}/{{ new_product.slug }}"><img src="{{ new_product.productimage_set.all.0.image }}" alt="{{ new_product.name }}"></a>
+                        <a href="{{ new_product.slug }}"><img src="{{ new_product.productimage_set.all.0.image }}" alt="{{ new_product.name }}"></a>
                     </div>
                     <div class="description_product">
                         <div class="header_product">
-                            <a href="{{ new_product.category.slug }}/{{ new_product.slug }}">
+                            <a href="{{ new_product.get_absolute_url }}">
                                 {{ new_product.name|truncatechars:18 }}
                             </a>
                         </div>
@@ -59,7 +59,7 @@
                         <div class="color"></div>
                         <div class="info_price">
                             <span>Цена: </span>
-                            <span class="price">{{ new_product.price|floatformat:0 }}</span>
+                            <span class="price">{{ new_product.price|floatformat:0 }} <span class="ruble-sybmol">руб.</span></span>
                             <span><a href="#">Купить</a></span>
                         </div>
                     </div>
