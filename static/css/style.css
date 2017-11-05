@@ -61,6 +61,7 @@ body{
 * {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
+    box-sizing: border-box;
 }
 .ruble-sybmol {
     font-family: 'RoubleArial', sans-serif !important;
@@ -289,7 +290,7 @@ footer .social img {
 
 
 .content_wrapper {
-    margin: 0 30px 0 35px;
+    margin: 0 30px 20px 35px;
     line-height: 120%;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;    min-height: 600px;

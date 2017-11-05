@@ -9,6 +9,11 @@ class ProductImageInline(admin.TabularInline):
     extra = 0
 
 
+class ProductReviewInline(admin.TabularInline):
+    model = ProductReview
+    extra = 0
+
+
 class ProductColorInline(admin.TabularInline):
     model = ProductColor
     extra = 0
@@ -44,7 +49,7 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     list_select_related = True
     # list_display = [field.name for field in Product._meta.fields]
-    inlines = [ProductImageInline, ProductToCategoryInline, ProductColorInline, ProductAttributeInline]
+    inlines = [ProductImageInline, ProductToCategoryInline, ProductReviewInline, ProductColorInline, ProductAttributeInline]
 
     class Meta:
         model = Product
@@ -53,14 +58,14 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 
 
-# class ProductImageAdmin(admin.ModelAdmin):
-#     list_display = [field.name for field in ProductImage._meta.fields]
-#
-#     class Meta:
-#         model = ProductImage
-#
-#
-# admin.site.register(ProductImage, ProductImageAdmin)
+class ProductReviewAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in ProductReview._meta.fields]
+
+    class Meta:
+        model = ProductReview
+
+
+admin.site.register(ProductReview, ProductReviewAdmin)
 #
 #
 # class ProductColorAdmin(admin.ModelAdmin):

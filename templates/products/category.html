@@ -21,11 +21,16 @@
     {% endif %}
     <div class="category_filters">Тут фильтры пока пустые</div>
     <div class="products">
-{{ products }}
         {% for product in products %}
-            {{ product }}
+            <div>
+                <a href="/{{ product.product.slug }}">
+                    <img src="{{ product.product.productimage_set.all.0.image }}" alt="">
+                </a>
+                <a href="/{{ product.product.slug }}">
+                    {{ product.product.full_name }}
+                </a>
+            </div>
         {% endfor %}
-        ---
         <div class="product">
             <div class="img_product">
                 <a href="#"><img src="" alt=""></a>

@@ -74,6 +74,7 @@ class Product(models.Model):
     meta_description = models.TextField(u'описание', blank=True)
 
     is_active = models.BooleanField(default=1)
+    stock = models.IntegerField(blank=True, null=True, verbose_name=u'Количество товара')
     group_id = models.CharField(max_length=128, blank=True, null=True, verbose_name=u'ID группы товаров')
     created = models.DateTimeField(u'дата создания', auto_now_add=True, blank=True, null=True, editable=False)
     changed = models.DateTimeField(u'дата изменения', auto_now=True, blank=True, null=True, editable=False)
@@ -140,3 +141,20 @@ class ProductToCategory(models.Model):
     class Meta:
         verbose_name = 'Категория товара'
         verbose_name_plural = 'Категории товаров'
+
+
+class ProductReview(models.Model):
+    product = models.ForeignKey(Product, blank=True, null=True, default=None)
+    name = models.CharField(max_length=128, blank=True, null=False, default=None, verbose_name=u'Имя')
+    text = models.TextField(blank=True, verbose_name=u'Текст отзыва')
+    rating = models.IntegerField(blank=True, verbose_name=u'Оценка отзыва', default=5)
+    is_active = models.BooleanField(default=0, verbose_name=u'Отображать')
+
+    def __str__(self):
+        return "%s" % self.id
+
+    class Meta:
+        verbose_name = 'Отзыв о товаре'
+        verbose_name_plural = 'Отзывы'
+
+
