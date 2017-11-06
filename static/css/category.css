@@ -1,0 +1,141 @@
+.header_category {
+    margin-top: 30px;
+}
+
+.subcategory {
+    margin: 10px 0;
+}
+
+.subcategory a {
+    margin-right: 20px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.top_category_text {
+    margin-bottom: 15px;
+}
+
+.category_filters {
+    margin: 15px 0;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.one_product {
+    width: 33%;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.image_product {
+    min-width: 180px;
+    min-height: 180px;
+    max-width: 180px;
+    max-height: 180px;
+    display: flex;
+    border: 2px solid #b1b1b1;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.image_product img {
+    max-height: 100%;
+    align-self: center;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+.info_product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.name_product a {
+    color: #000;
+    font-size: 13px;
+}
+
+.vendor_code {
+    color: #000;
+    font-size: 13px;
+}
+
+.variant_color {
+    margin: 15px 0;
+}
+
+.button_cart>button {
+    text-transform: uppercase;
+    padding: 2px 5px;
+    height: 19px;
+    line-height: 17px;
+    font-size: 13px;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    margin: 13px 0 0 0;
+    color: #fff;
+    background-color: #afb2b0;
+}
+
+.price {
+    font-size: 13px;
+}
+
+.price>span:last-child {
+    color: #ec5754;
+    font-size: 14px;
+}
+
+.color {
+    width: 60%;
+    height: 15px;
+    background: url(../img/color.jpeg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.pagination .step-links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pagination {
+    margin-bottom: 25px;
+}
+
+.header_see_more {
+    display: block;
+    -webkit-margin-before: 0.67em;
+    -webkit-margin-after: 0.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+.content_see_more {
+    display: flex;
+    justify-content: space-between;
+}
+
+.one_see_more a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.one_see_more a img {
+    max-height: 100%;
+    max-width: 100%;
+}

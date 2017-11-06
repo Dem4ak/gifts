@@ -58,7 +58,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=250, verbose_name=u'Адрес', unique=True,
                             help_text=u'Адрес категории на латинице. Например, "your_address"')
     description = models.TextField(verbose_name=u'Описание', null=True, default=None)
-    category = models.ForeignKey(Category, verbose_name=u'Главная категории', blank=True)
+    # category = models.ForeignKey(Category, verbose_name=u'Главная категории', blank=True)
     vendor_code = models.CharField(max_length=250,
                                    blank=True, null=False, default=None, verbose_name=u'Артикул', unique=True)
     price = models.FloatField(blank=True, null=False, default=0.00, verbose_name=u'Цена')
@@ -112,6 +112,9 @@ class ProductColor(models.Model):
     def __str__(self):
         return "%s" % self.id
 
+    def get_products_color_group(self):
+        return ProductColor.objects.color.all()
+
     class Meta:
         verbose_name = 'Цвет товара'
         verbose_name_plural = 'Цвета товаров'
@@ -156,5 +159,3 @@ class ProductReview(models.Model):
     class Meta:
         verbose_name = 'Отзыв о товаре'
         verbose_name_plural = 'Отзывы'
-
-

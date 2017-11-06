@@ -8,34 +8,103 @@
     <link rel="stylesheet" href="{% static 'css/category.css' %}">
 {% endblock style %}
 {% block page %}
-    <div class="header_category"><h1>{{ category.name }}</h1></div>
-    {% if subcategory  %}
+    <div class="wrapper_category">
+        <div class="header_category">
+            <h1>{{ category.name }}</h1>
+        </div>
+        {% if subcategory %}
         <div class="subcategory">
             {% for subcat in subcategory %}
                 <a href="{{ subcat.get_absolute_url }}">{{ subcat.name }}</a>
             {% endfor %}
         </div>
-    {% endif %}
-    {% if category.seo_text_top %}
+        {% endif %}
+        {% if category.seo_text_top %}
         <div class="top_category_text">{{ category.seo_text_top|safe }}</div>
-    {% endif %}
-    <div class="category_filters">Тут фильтры пока пустые</div>
-    <div class="products">
-        {% for product in products %}
-            <div>
-                <a href="/{{ product.product.slug }}">
-                    <img src="{{ product.product.productimage_set.all.0.image }}" alt="">
-                </a>
-                <a href="/{{ product.product.slug }}">
-                    {{ product.product.full_name }}
-                </a>
+        {% endif %}
+        <div class="category_filters">Тут фильтры пока пустые</div>
+        <div class="wrapper_products">
+            {% if products %}
+                <div class="products">
+                {% for product in products %}
+                    <div class="one_product">
+                        <div class="image_product">
+                            <a href="/{{ product.product.slug }}">
+                                <img src="{{ product.product.productimage_set.all.0.image }}" alt="{{ product.product.full_name }}">
+                            </a>
+                        </div>
+                        <div class="info_product">
+                            <div class="name_product">
+                                <a href="/{{ product.product.slug }}">
+                                    {{ product.product.name }}
+                                </a>
+                            </div>
+                            <div class="vendor_code">
+                                <span>Артикул: </span>
+                                <span>{{ product.product.vendor_code }}</span>
+                            </div>
+                            <div class="variant_color">
+                                <div class="color"></div>
+                            </div>
+                            <div class="price">
+                                <span>Цена: </span>
+                                <span>{{ product.product.price }} <span class="ruble-sybmol">руб.</span></span>
+                            </div>
+                            <div class="button_cart">
+                                <button>В корзину</button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="pagination">
+                <span class="step-links">
+                    {% if products.has_previous %}
+                        <a href="?page={{ products.previous_page_number }}">← Предыдущие</a>
+                    {% endif %}
+
+                    <div>
+                        {%  for p in paginator.page_range %}
+                            <span><a href="{{ page_path }}page={{ p }}">{{ p }}</a></span>
+                        {% endfor %}
+                    </div>
+
+
+                    {% if products.has_next %}
+                        <a href="?page={{ products.next_page_number }}">Следующие →</a>
+                    {% endif %}
+                </span>
             </div>
-        {% endfor %}
-        <div class="product">
-            <div class="img_product">
-                <a href="#"><img src="" alt=""></a>
+                </div>
+            {% else %}
+                <div class="empty_category">
+                    В данной категории нет товаров, попробуйте начать с <a href="/">Главной</a>
+                </div>
+            {% endif %}
+
+        </div>
+        <div class="see_more">
+            <div class="header_see_more">Смотрите также</div>
+            <div class="content_see_more">
+                {% for one_category in see_more %}
+                    {% if one_category.id != category.id and one_category.id != 1 %}
+                    <div class="one_see_more">
+                        <a href="{{ one_category.get_absolute_url }}">
+                            <img src="../../{{ one_category.category_image }}" alt="{{ one_category.name }}">
+                        </a>
+                    <div class="name_see_more">{{ one_category.name }}</div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-            <div class="info_product"></div>
+
+        </div>
+        <div class="bottom_text">
+            {% if category.seo_text_bottom_left %}
+            <div class="bottom_left_category_text">{{ category.seo_text_bottom_left|safe }}</div>
+            {% endif %}
+            {% if category.seo_text_bottom_right %}
+            <div class="bottom_right_category_text">{{ category.seo_text_bottom_right|safe }}</div>
+            {% endif %}
         </div>
     </div>
 {% endblock page %}

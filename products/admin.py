@@ -40,19 +40,25 @@ admin.site.register(Category, CategoryAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "full_name", "slug", "vendor_code", 'category', "price", "is_active", "changed")
+    list_display = ("name", "full_name", "slug", "vendor_code", 'categories', "price", "is_active", "changed")
     list_display_links = ('name', "full_name", 'slug',)
     list_filter = []
-    list_editable = ('category', 'is_active',)
+    # list_editable = ('categories',)
     search_fields = ('name', 'price', 'vendor_code',)
 
     prepopulated_fields = {'slug': ('name',)}
     list_select_related = True
     # list_display = [field.name for field in Product._meta.fields]
-    inlines = [ProductImageInline, ProductToCategoryInline, ProductReviewInline, ProductColorInline, ProductAttributeInline]
+    inlines = [ProductImageInline, ProductToCategoryInline, ProductReviewInline, ProductColorInline,
+               ProductAttributeInline]
 
     class Meta:
         model = Product
+
+    def categories(self, obj):
+        return obj.producttocategory_set.all()
+
+    categories.short_description = u'Категории товаров'
 
 
 admin.site.register(Product, ProductAdmin)
