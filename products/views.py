@@ -22,8 +22,7 @@ def all_products(request, category_slug):
         products = paginator.page(paginator.num_pages)
     return render_to_response('products/category.html',
                               {"products": products, "category": category, "subcategory": subcategory,
-                               "see_more": see_more,
-                               "paginator": paginator})
+                               "see_more": see_more})
 
 
 def one_product(request, product_slug):

@@ -139,3 +139,29 @@
     max-height: 100%;
     max-width: 100%;
 }
+
+.red{
+    color: #f00;
+}
+
+.name_see_more {
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.bottom_text {
+    display: flex;
+    margin-top: 35px;
+    justify-content: space-between;
+}
+
+.bottom_text h2 {
+    margin-bottom: 15px;
+}
+
+.bottom_text>div {
+    min-width: 47%;
+}

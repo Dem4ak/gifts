@@ -56,25 +56,27 @@
                         </div>
                     </div>
                 {% endfor %}
-                <div class="pagination">
-                <span class="step-links">
-                    {% if products.has_previous %}
-                        <a href="?page={{ products.previous_page_number }}">← Предыдущие</a>
-                    {% endif %}
 
-                    <div>
-                        {%  for p in paginator.page_range %}
-                            <span><a href="{{ page_path }}page={{ p }}">{{ p }}</a></span>
-                        {% endfor %}
-                    </div>
-
-
-                    {% if products.has_next %}
-                        <a href="?page={{ products.next_page_number }}">Следующие →</a>
-                    {% endif %}
-                </span>
-            </div>
                 </div>
+                {% if products.paginator.num_pages != 1 %}
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if products.has_previous %}
+                                <a href="?page={{ products.previous_page_number }}">← Предыдущие</a>
+                            {% else %}
+                                <span></span>
+                            {% endif %}
+
+                            <span class="current">
+                                Страница {{ products.number }} of {{ products.paginator.num_pages }}.
+                            </span>
+
+                            {% if products.has_next %}
+                                <a href="?page={{ products.next_page_number }}">Следующие →</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
             {% else %}
                 <div class="empty_category">
                     В данной категории нет товаров, попробуйте начать с <a href="/">Главной</a>
@@ -91,7 +93,10 @@
                         <a href="{{ one_category.get_absolute_url }}">
                             <img src="../../{{ one_category.category_image }}" alt="{{ one_category.name }}">
                         </a>
-                    <div class="name_see_more">{{ one_category.name }}</div>
+                        <div class="name_see_more">
+                            <span class="red">{{ one_category.name.0 }}</span>
+                            <span class="remove_first">{{ one_category.name }}</span>
+                        </div>
                     </div>
                     {% endif %}
                 {% endfor %}
@@ -108,3 +113,13 @@
         </div>
     </div>
 {% endblock page %}
+{% block script %}
+    <script src="{% static 'js/jquery-1-12-4.js' %}"></script>
+    <script>
+        var text;
+        $('.remove_first').each(function () {
+            $(this).text($(this).text().slice(1));
+
+        });
+    </script>
+{% endblock script %}
